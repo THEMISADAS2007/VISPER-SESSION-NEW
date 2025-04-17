@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       display: flex;
@@ -12,7 +12,7 @@
       height: 100vh;
       margin: 0;
       font-family: 'Roboto', 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #4e9f3d, #34d7b7, #55c7f7);
+      background: linear-gradient(135deg, #111318, #182220, #10171a);
       background-size: 300% 300%;
       animation: gradientAnimation 10s ease infinite;
     }
@@ -51,9 +51,15 @@
       cursor: pointer;
       transition: all 0.4s ease;
       box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+      z-index: 1;
     }
 
-    /* Add shine effect on hover */
+    .btn span {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Shine effect on hover */
     .btn::before {
       content: '';
       position: absolute;
@@ -64,6 +70,7 @@
       background: rgba(255, 255, 255, 0.3);
       transform: skewX(45deg);
       transition: all 0.5s;
+      z-index: 2;
     }
 
     .btn:hover::before {
@@ -73,11 +80,42 @@
       width: 100%;
     }
 
+    /* Rainbow gradient animation */
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      background: linear-gradient(270deg, #ff00c8, #00ffe5, #ffdd00, #ff0000, #00ff6a, #0099ff);
+      background-size: 1200% 1200%;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      animation: btnGradientAnimation 8s ease infinite;
+    }
+
+    .btn:hover::after {
+      opacity: 1;
+    }
+
+    @keyframes btnGradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
     .btn:hover {
-      background-color: #ffffff;
-      color: #333;
-      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.5);
+      color: #ffffff;
       transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(255, 255, 255, 0.5);
     }
 
     .btn:active {
@@ -121,10 +159,10 @@
 </head>
 <body>
 
-  <button onclick="window.open(`/qr`)" class="btn">QR Code</button>
-  <button onclick="window.open(`/pair`)" class="btn">Pair Code</button>
-  <button onclick="window.open(`https://github.com/GlobalTechInfo`)" class="btn">GitHub</button>
-  <button onclick="window.open(`https://whatsapp.com/channel/0029VagJIAr3bbVBCpEkAM07`)" class="btn">WhatsApp</button>
+  <button onclick="window.open(`/qr`)" class="btn"><span>QR Code</span></button>
+  <button onclick="window.open(`/pair`)" class="btn"><span>Pair Code</span></button>
+  <button onclick="window.open(`https://github.com/GlobalTechInfo`)" class="btn"><span>GitHub</span></button>
+  <button onclick="window.open(`https://whatsapp.com/channel/0029VagJIAr3bbVBCpEkAM07`)" class="btn"><span>Support</span></button>
 
 </body>
 </html>
