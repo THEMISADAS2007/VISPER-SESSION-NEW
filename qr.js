@@ -175,7 +175,7 @@ if (fs.existsSync('./auth_info_baileys')) {
 
 
 
-                        const Scan_Id = string_session;
+                        const Scan_Id = `MOVIE-VISPER=${string_session}`;
 
           console.log(`
 
