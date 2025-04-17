@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pair with Me</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to bottom, #ffffff, #ebebeb);
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .box {
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+    }
+
+    #text {
+      color: #000;
+    }
+
+    .centered-text {
+      color: #000;
+    }
+
+    .input-container {
+      display: flex;
+      background: linear-gradient(45deg, #c5c5c5 0%, #ffffff 100%);
+      box-shadow: 20px 20px 20px #d8d8d8, -10px -10px 20px #f8f8f8;
+      padding: 0.3rem;
+      gap: 0.3rem;
+      max-width: 300px;
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+    .input-container input {
+      border-radius: 0.8rem 0 0 0.8rem;
+      background: #e8e8e8;
+      box-shadow: inset 13px 13px 10px #dcdcdc, inset -13px -13px 10px #f4f4f4;
+      width: 100%;
+      flex-basis: 75%;
+      padding: 1rem;
+      border: none;
+      border-left: 2px solid #4998FF;
+      color: #5e5e5e;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .input-container input:focus {
+      border-left: 2px solid #4998FF;
+      outline: none;
+      box-shadow: inset 13px 13px 10px #BFF0FA, inset -13px -13px 10px #f4f4f4;
+    }
+
+    .input-container button {
+      flex-basis: 25%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #BFF0FA 0%, #4998FF 100%);
+      font-weight: 900;
+      letter-spacing: 0.3rem;
+      text-transform: uppercase;
+      color: white;
+      border: none;
+      width: 100%;
+      border-radius: 0 1rem 1rem 0;
+      transition: all 0.2s ease-in-out;
+      cursor: pointer;
+    }
+
+    .input-container button:hover {
+      background: linear-gradient(135deg, #BFF0FA 0%, #4998ffc4 100%);
+    }
+
+    .centered-text {
+      text-align: center;
+    }
+
+    @media (max-width: 500px) {
+      .box {
+        width: 90%;
+      }
+
+      .input-container {
+        flex-direction: column;
+      }
+
+      .input-container input,
+      .input-container button {
+        border-radius: 0.8rem;
+        width: 100%;
+      }
+    }
+
+    #result-box {
+      margin-top: 20px;
+      padding: 15px 20px;
+      background: #ffffff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      animation: slideFadeIn 0.6s ease-out forwards;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    @keyframes slideFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .copy-btn {
+      margin-top: 10px;
+      background: linear-gradient(135deg, #ff6f61, #ff8a65);
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      animation: glowBtn 2s infinite alternate;
+    }
+
+    .copy-btn:hover {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, #ff8a65, #ffab91);
+    }
+
+    @keyframes glowBtn {
+      from { box-shadow: 0 0 5px #ff5252; }
+      to { box-shadow: 0 0 20px #ff8a80; }
+    }
+
+    .code-text {
+      font-size: 24px;
+      font-weight: 700;
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="main">
+      <div class="box" id="box">
+        <div id="text">
+          <i class="fa fa-user"></i>
+          <h3 class="centered-text">© GlobalTechInfo</h3>
+          <h6>Enter your number with a country code.</h6>
+          <div class="input-container">
+            <input placeholder="923444844060" type="number" id="number">
+            <button id="submit">Submit</button>
+          </div>
+          <div id="result-box">
+            <div class="code-text" id="code-value"></div>
+            <button class="copy-btn" onclick="Copy()">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
+  <script>
+    const pair = document.getElementById("result-box");
+    const codeText = document.getElementById("code-value");
+    const submitBtn = document.getElementById("submit");
+    const input = document.getElementById("number");
+
+    async function Copy() {
+      const code = codeText.innerText.replace('CODE: ', '');
+      await navigator.clipboard.writeText(code);
+      const btn = document.querySelector('.copy-btn');
+      btn.innerText = "Copied!";
+      btn.style.background = "linear-gradient(135deg, #4caf50, #81c784)";
+      setTimeout(() => {
+        btn.innerText = "Copy";
+        btn.style.background = "linear-gradient(135deg, #ff6f61, #ff8a65)";
+      }, 1500);
+    }
+
+    submitBtn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!input.value) {
+        alert("Please enter your number with country code.");
+        return;
+      }
+
+      const number = input.value.replace(/[^0-9]/g, "");
+      if (number.length < 11) {
+        alert("Invalid number format.");
+        return;
+      }
+
+      input.value = "+" + number;
+      input.style.color = "black";
+      input.style.fontSize = "18px";
+
+      pair.style.display = "none";
+      codeText.innerText = "Please wait...";
+
+      let res = await axios(`/code?number=${number}`);
+      let code = res.data.code || "Unavailable";
+
+      codeText.innerText = `CODE: ${code}`;
+      pair.style.display = "flex";
+      pair.style.animation = "slideFadeIn 0.6s ease-out";
+    });
+  </script>
+</body>
+</html>
