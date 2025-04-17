@@ -12,21 +12,11 @@ const fs = require("fs-extra");
 
 const { Boom } = require("@hapi/boom");
 
-const MESSAGE = process.env.MESSAGE ||  `
-*SESSION GENERATED SUCCESSFULY* ✅
+const MESSAGE = process.env.MESSAGE ||  `*Do not share others this code ❗*
 
-*Gɪᴠᴇ ᴀ ꜱᴛᴀʀ ᴛᴏ ʀᴇᴘᴏ ꜰᴏʀ ᴄᴏᴜʀᴀɢᴇ* 🌟
-https://github.com/GuhailTechInfo/ULTRA-MD
+*• Follow us :* https://whatsapp.com/channel/0029Vb1Db0LCsU9SUsOXuC3c
 
-*Sᴜᴘᴘᴏʀᴛ Gʀᴏᴜᴘ ꜰᴏʀ ϙᴜᴇʀʏ* 💭
-https://t.me/GlobalBotInc
-https://whatsapp.com/channel/0029VagJIAr3bbVBCpEkAM07
-
-
-*Yᴏᴜ-ᴛᴜʙᴇ ᴛᴜᴛᴏʀɪᴀʟꜱ* 🪄 
-https://youtube.com/GlobalTechInfo
-
-*ULTRA-MD--WHATTSAPP-BOT* 🥀
+*Happy sinhala and tamil new year 🦋💗*
 `
 
 
