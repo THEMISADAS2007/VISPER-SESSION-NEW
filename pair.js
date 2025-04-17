@@ -4,11 +4,11 @@ const { exec } = require("child_process");
 let router = express.Router();
 const pino = require("pino");
 const { Boom } = require("@hapi/boom");
-const MESSAGE = process.env.MESSAGE || `Do not share others this code ❗
+const MESSAGE = process.env.MESSAGE || `*Do not share others this code ❗*
 
-• Follow us : https://whatsapp.com/channel/0029Vb1Db0LCsU9SUsOXuC3c
+*• Follow us :* https://whatsapp.com/channel/0029Vb1Db0LCsU9SUsOXuC3c
 
-Happy sinhala and tamil new year 🦋💗`;
+*Happy sinhala and tamil new year 🦋💗*`;
 
 const { upload } = require('./mega');
 const {
