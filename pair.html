@@ -5,230 +5,233 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Pair with Me</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e93cb5, #ce0aa3);
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
-      background: linear-gradient(to bottom, #ffffff, #ebebeb);
-      font-family: Arial, sans-serif;
     }
 
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .box {
-      width: 300px;
-      padding: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 90%;
       text-align: center;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
     }
 
-    #text {
-      color: #000;
+    h3 {
+      margin: 0;
+      font-weight: 600;
+      color: #1e3a8a;
     }
 
-    .centered-text {
-      color: #000;
+    p {
+      color: #1f2937;
+      font-size: 14px;
+      margin-bottom: 20px;
     }
 
     .input-container {
       display: flex;
-      background: linear-gradient(45deg, #c5c5c5 0%, #ffffff 100%);
-      box-shadow: 20px 20px 20px #d8d8d8, -10px -10px 20px #f8f8f8;
-      padding: 0.3rem;
-      gap: 0.3rem;
-      max-width: 300px;
-      width: 100%;
-      border-radius: 1rem;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
     }
 
     .input-container input {
-      border-radius: 0.8rem 0 0 0.8rem;
-      background: #e8e8e8;
-      box-shadow: inset 13px 13px 10px #dcdcdc, inset -13px -13px 10px #f4f4f4;
-      width: 100%;
-      flex-basis: 75%;
-      padding: 1rem;
       border: none;
-      border-left: 2px solid #4998FF;
-      color: #5e5e5e;
-      transition: all 0.2s ease-in-out;
-    }
-
-    .input-container input:focus {
-      border-left: 2px solid #4998FF;
+      padding: 14px;
+      flex: 1;
+      font-size: 16px;
+      color: #111827;
       outline: none;
-      box-shadow: inset 13px 13px 10px #BFF0FA, inset -13px -13px 10px #f4f4f4;
     }
 
     .input-container button {
-      flex-basis: 25%;
-      padding: 1rem;
-      background: linear-gradient(135deg, #BFF0FA 0%, #4998FF 100%);
-      font-weight: 900;
-      letter-spacing: 0.3rem;
-      text-transform: uppercase;
+      background: linear-gradient(135deg, #f63bf6, #60a5fa);
+      border: none;
+      color: white;
+      padding: 0 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+      position: relative;
+    }
+
+    .input-container button.loading::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid #fff;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      transform: translateY(-50%);
+    }
+
+    .input-container button.loading {
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes spin {
+      to {
+        transform: translateY(-50%) rotate(360deg);
+      }
+    }
+
+    #pair {
+      margin-top: 20px;
+    }
+
+    .code-box {
+      background: #f3f4f6;
+      border-radius: 10px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #111827;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: inset 2px 2px 8px #e5e7eb;
+    }
+
+    .copy-btn {
+      background: #3b82f6;
       color: white;
       border: none;
-      width: 100%;
-      border-radius: 0 1rem 1rem 0;
-      transition: all 0.2s ease-in-out;
+      border-radius: 6px;
+      padding: 6px 12px;
       cursor: pointer;
+      font-size: 14px;
+      transition: 0.3s ease;
     }
 
-    .input-container button:hover {
-      background: linear-gradient(135deg, #BFF0FA 0%, #4998ffc4 100%);
-    }
-
-    .centered-text {
-      text-align: center;
+    .copy-btn:hover {
+      background: #f502d4;
     }
 
     @media (max-width: 500px) {
-      .box {
-        width: 90%;
-      }
-
       .input-container {
         flex-direction: column;
       }
 
       .input-container input,
       .input-container button {
-        border-radius: 0.8rem;
         width: 100%;
+        border-radius: 0;
+      }
+
+      .input-container button {
+        border-top: 1px solid #e5e7eb;
+      }
+
+      .code-box {
+        flex-direction: column;
+        gap: 10px;
       }
     }
 
-    #result-box {
-      margin-top: 20px;
-      padding: 15px 20px;
-      background: #ffffff;
-      border-radius: 1rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      animation: slideFadeIn 0.6s ease-out forwards;
-      display: none;
-      flex-direction: column;
-      align-items: center;
+    .sadas {
+
+color: #1f2937;
+font-weight: bolder;
+font-size: x-large;
+
     }
 
-    @keyframes slideFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
 
-    .copy-btn {
-      margin-top: 10px;
-      background: linear-gradient(135deg, #ff6f61, #ff8a65);
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 999px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
-      animation: glowBtn 2s infinite alternate;
-    }
+    .sadas1 {
 
-    .copy-btn:hover {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, #ff8a65, #ffab91);
-    }
+font-style: oblique;
+font-weight: bold;
 
-    @keyframes glowBtn {
-      from { box-shadow: 0 0 5px #ff5252; }
-      to { box-shadow: 0 0 20px #ff8a80; }
-    }
 
-    .code-text {
-      font-size: 24px;
-      font-weight: 700;
-      color: #222;
+
+
+
     }
   </style>
 </head>
 <body>
+
   <div class="container">
-    <div class="main">
-      <div class="box" id="box">
-        <div id="text">
-          <i class="fa fa-user"></i>
-          <h3 class="centered-text">© GlobalTechInfo</h3>
-          <h6>Enter your number with a country code.</h6>
-          <div class="input-container">
-            <input placeholder="923444844060" type="number" id="number">
-            <button id="submit">Submit</button>
-          </div>
-          <div id="result-box">
-            <div class="code-text" id="code-value"></div>
-            <button class="copy-btn" onclick="Copy()">Copy</button>
-          </div>
-        </div>
-      </div>
+    <h3 class="sadas">MOVIE VISPER MD</h3>
+    <p class="sadas1">Enter your number with a country code.</p>
+
+    <div class="input-container">
+      <input id="number" type="number" placeholder="94787318729" />
+      <button id="submit"><span id="submit-text">Submit</span></button>
     </div>
+
+    <div id="pair"></div>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
   <script>
-    const pair = document.getElementById("result-box");
-    const codeText = document.getElementById("code-value");
     const submitBtn = document.getElementById("submit");
     const input = document.getElementById("number");
+    const pair = document.getElementById("pair");
+    const submitText = document.getElementById("submit-text");
 
-    async function Copy() {
-      const code = codeText.innerText.replace('CODE: ', '');
-      await navigator.clipboard.writeText(code);
-      const btn = document.querySelector('.copy-btn');
-      btn.innerText = "Copied!";
-      btn.style.background = "linear-gradient(135deg, #4caf50, #81c784)";
-      setTimeout(() => {
-        btn.innerText = "Copy";
-        btn.style.background = "linear-gradient(135deg, #ff6f61, #ff8a65)";
-      }, 1500);
+    async function copyToClipboard(text) {
+      await navigator.clipboard.writeText(text);
+      alert("Code copied to clipboard: " + text);
     }
 
     submitBtn.addEventListener("click", async (e) => {
       e.preventDefault();
-      if (!input.value) {
-        alert("Please enter your number with country code.");
-        return;
-      }
-
       const number = input.value.replace(/[^0-9]/g, "");
-      if (number.length < 11) {
-        alert("Invalid number format.");
+
+      if (!number) {
+        pair.innerHTML = "<p>Please enter your WhatsApp number with country code.</p>";
         return;
       }
 
-      input.value = "+" + number;
-      input.style.color = "black";
-      input.style.fontSize = "18px";
+      if (number.length < 11) {
+        pair.innerHTML = "<p>Invalid number format.</p>";
+        return;
+      }
 
-      pair.style.display = "none";
-      codeText.innerText = "Please wait...";
+      submitBtn.classList.add("loading");
+      submitText.textContent = "Submitting...";
+      pair.innerHTML = "<p>Loading, please wait...</p>";
 
-      let res = await axios(`/code?number=${number}`);
-      let code = res.data.code || "Unavailable";
+      try {
+        const res = await axios(`/code?number=${number}`);
+        const code = res.data.code || "Unavailable";
 
-      codeText.innerText = `CODE: ${code}`;
-      pair.style.display = "flex";
-      pair.style.animation = "slideFadeIn 0.6s ease-out";
+        pair.innerHTML = `
+          <div class="code-box">
+            <span>CODE: ${code}</span>
+            <button class="copy-btn" onclick="copyToClipboard('${code}')">📋 Copy</button>
+          </div>
+        `;
+      } catch (err) {
+        pair.innerHTML = "<p>Something went wrong. Try again.</p>";
+      }
+
+      submitBtn.classList.remove("loading");
+      submitText.textContent = "Submit";
     });
   </script>
+
 </body>
 </html>
+
