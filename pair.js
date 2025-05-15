@@ -18,7 +18,7 @@ const {
     makeCacheableSignalKeyStore,
     Browsers,
     DisconnectReason
-} = require("darksadas-new-baliyes");
+} = require("@whiskeysockets/baileys");
 
 // Ensure the directory is empty when the app starts
 if (fs.existsSync('./auth_info_baileys')) {
