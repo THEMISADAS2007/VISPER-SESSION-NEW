@@ -6,9 +6,7 @@ const pino = require("pino");
 const { Boom } = require("@hapi/boom");
 const MESSAGE = process.env.MESSAGE || `*Do not share others this code ❗*
 
-*• Follow us :* https://whatsapp.com/channel/0029Vb1Db0LCsU9SUsOXuC3c
-
-*Happy sinhala and tamil new year 🦋💗*`;
+*• Follow us :* https://whatsapp.com/channel/0029Vb1Db0LCsU9SUsOXuC3c`;
 
 const { upload } = require('./mega');
 const {
