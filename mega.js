@@ -10,11 +10,6 @@ const accounts = [
     email: 'vispermd@gmail.com',
     password: 'visperms2000@',
     userAgent: 'Mozilla/5.0 ...'
-  },
-    {
-    email: 'sadarasbeenu@gmail.com',
-    password: 'sadarasmh2000@',
-    userAgent: 'Mozilla/5.0 ...'
   }
 ];
 
