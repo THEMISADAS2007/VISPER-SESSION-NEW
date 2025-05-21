@@ -7,8 +7,8 @@ const accounts = [
     userAgent: 'Mozilla/5.0 ...'
   },
   {
-    email: 'sadasofcheroku@gmail.com',
-    password: 'darksadasyt2000@',
+    email: 'vispermd@gmail.com',
+    password: 'visperms2000@',
     userAgent: 'Mozilla/5.0 ...'
   },
     {
